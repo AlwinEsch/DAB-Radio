@@ -6,6 +6,9 @@ set(ROOT_DIR ${SRC_DIR}/..)
 if(NOT DEFINED FFTW3_LIBS)
     message(FATAL_ERROR "FFTW3_LIBS must be defined")
 endif()
+if(NOT DEFINED FMT_LIBS)
+    message(FATAL_ERROR "FMT_LIBS must be defined")
+endif()
 
 add_library(ofdm_core STATIC 
     ${SRC_DIR}/ofdm_demodulator.cpp
@@ -19,4 +22,4 @@ add_library(ofdm_core STATIC
 )
 target_include_directories(ofdm_core PRIVATE ${SRC_DIR} ${ROOT_DIR})
 set_target_properties(ofdm_core PROPERTIES CXX_STANDARD 17)
-target_link_libraries(ofdm_core PRIVATE ${FFTW3_LIBS} fmt)
+target_link_libraries(ofdm_core PRIVATE ${FFTW3_LIBS} ${FMT_LIBS})

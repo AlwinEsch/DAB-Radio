@@ -17,7 +17,7 @@ add_library(basic_radio STATIC
     ${SRC_DIR}/basic_slideshow.cpp)
 set_target_properties(basic_radio PROPERTIES CXX_STANDARD 17)
 target_include_directories(basic_radio PRIVATE ${SRC_DIR} ${ROOT_DIR})
-target_link_libraries(basic_radio PRIVATE dab_core fmt)
+target_link_libraries(basic_radio PRIVATE dab_core ${FMT_LIBS})
 
 if(BASIC_RADIO_USE_EASYLOGGING)
     target_link_libraries(basic_radio PRIVATE easyloggingpp)

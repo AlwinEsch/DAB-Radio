@@ -3,6 +3,13 @@ project(dab_core)
 
 option(DAB_CORE_USE_EASYLOGGING "Use easylogging for dab_core" OFF)
 
+if(NOT DEFINED FMT_LIBS)
+    message(FATAL_ERROR "FMT_LIBS must be defined")
+endif()
+if(NOT DEFINED FAAD2_LIBS)
+    message(FATAL_ERROR "FAAD2_LIBS must be defined")
+endif()
+
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 set(ROOT_DIR ${SRC_DIR}/..)
 
@@ -33,7 +40,7 @@ add_library(dab_core STATIC
     ${SRC_DIR}/radio_fig_handler.cpp)
 set_target_properties(dab_core PROPERTIES CXX_STANDARD 17)
 target_include_directories(dab_core PRIVATE ${SRC_DIR} ${ROOT_DIR})
-target_link_libraries(dab_core PRIVATE faad2 viterbi fmt)
+target_link_libraries(dab_core PRIVATE ${FAAD2_LIBS} ${VITERBI_LIBS} ${FMT_LIBS})
 
 if(DAB_CORE_USE_EASYLOGGING)
     target_sources(dab_core PRIVATE ${SRC_DIR}/dab_logging.cpp)
